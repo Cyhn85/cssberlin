@@ -333,6 +333,63 @@ img {
     background: var(--primary-green);
 }
 
+/* Top CO₂ Banner */
+.top-banner {
+    background: var(--primary-green);
+    color: var(--text-white);
+    padding: 12px 0;
+    overflow: hidden;
+}
+
+.banner-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.banner-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.banner-item svg {
+    flex-shrink: 0;
+}
+
+/* Secondary Navigation */
+.secondary-nav {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-md) 0;
+}
+
+.secondary-nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-2xl);
+    padding: 0 var(--spacing-xl);
+}
+
+.sec-nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.sec-nav-link:hover {
+    background: var(--primary-orange);
+    color: var(--text-white);
+}
+
 /* Search Bar */
 .search-container {
     max-width: 1400px;
@@ -423,20 +480,21 @@ img {
 .products-section {
     max-width: 1400px;
     margin: 0 auto;
-    padding: var(--spacing-3xl) var(--spacing-xl);
+    padding: var(--spacing-lg) var(--spacing-xl);
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
 }
 
 .section-header h2 {
-    font-size: 32px;
-    font-weight: var(--font-weight-bold);
-    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
 }
 
 .filter-controls {
