@@ -760,7 +760,7 @@
             <div class="product-gallery">
                 <!-- Main Image -->
                 <div class="main-image-container">
-                    <img id="mainImage" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=750&fit=crop" alt="Elegante Blazer Jacke">
+                    <img id="main-image" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=750&fit=crop" alt="Product">
                     <button class="wishlist-btn-large">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -775,7 +775,7 @@
                 </div>
 
                 <!-- Thumbnail Gallery -->
-                <div class="thumbnail-gallery">
+                <div class="thumbnail-gallery" id="image-thumbnails">
                     <img class="thumbnail active" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=150&h=150&fit=crop" alt="Thumbnail 1" data-full="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=750&fit=crop">
                     <img class="thumbnail" src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=150&h=150&fit=crop" alt="Thumbnail 2" data-full="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=600&h=750&fit=crop">
                     <img class="thumbnail" src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=150&h=150&fit=crop" alt="Thumbnail 3" data-full="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=600&h=750&fit=crop">
@@ -826,8 +826,8 @@
             <div class="product-details">
                 <!-- Product Header -->
                 <div class="product-header">
-                    <div class="product-brand-large">ZARA</div>
-                    <h1 class="product-title-large">Elegante Blazer Jacke</h1>
+                    <div class="product-brand-large" id="product-brand">ZARA</div>
+                    <h1 class="product-title-large" id="product-title">Elegante Blazer Jacke</h1>
                     <div class="product-rating">
                         <div class="stars">★★★★★</div>
                         <span class="rating-count">(47 Bewertungen)</span>
@@ -837,7 +837,7 @@
                 <!-- Price Section -->
                 <div class="price-section">
                     <div class="price-main">
-                        <span class="current-price-large">45.00€</span>
+                        <span class="current-price-large" id="product-price">45.00€</span>
                         <span class="original-price">89.95€</span>
                         <span class="discount-badge">-50%</span>
                     </div>
@@ -959,7 +959,9 @@
                 <!-- Product Description -->
                 <div class="product-description">
                     <h3>Produktbeschreibung</h3>
-                    <p>Eleganter Blazer von Zara in sehr gutem Zustand. Perfekt für Business-Anlässe oder elegante Freizeitoutfits. Der Blazer wurde nur wenige Male getragen und wurde professionell gereinigt.</p>
+                    <div id="product-description">
+                        <p>Eleganter Blazer von Zara in sehr gutem Zustand. Perfekt für Business-Anlässe oder elegante Freizeitoutfits. Der Blazer wurde nur wenige Male getragen und wurde professionell gereinigt.</p>
+                    </div>
                     <ul>
                         <li>Klassischer Schnitt mit modernem Twist</li>
                         <li>Zwei Knöpfe vorne</li>
@@ -972,6 +974,9 @@
         </div>
     </section>
 
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/product-detail.js"></script>
     <script src="js/script.js"></script>
     <script>
         // Thumbnail gallery functionality
