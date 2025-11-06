@@ -7,7 +7,14 @@
    CSS VARIABLES
    ============================================ */
 :root {
-    /* Colors - Green Theme */
+    /* Colors - Climate Action Theme (Orange to Green) */
+    /* Orange = Climate Crisis (Problem/Urgency) */
+    --primary-orange: #FF6B35;
+    --primary-orange-hover: #FF8C5A;
+    --primary-orange-light: #FFB088;
+    --accent-orange: #FFF4F0;
+
+    /* Green = Sustainability Solution (Hope/Action) */
     --primary-green: #2D5016;
     --primary-green-hover: #4A7C2C;
     --primary-green-light: #6BA83E;
@@ -187,7 +194,7 @@ img {
 }
 
 .nav-link.active {
-    color: var(--primary-green);
+    color: var(--primary-orange);
     font-weight: var(--font-weight-semibold);
 }
 
@@ -199,13 +206,14 @@ img {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: var(--primary-green);
+    background: var(--primary-orange);
     transition: width var(--transition-base);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
     width: 80%;
+    background: var(--primary-green);
 }
 
 .nav-link:hover {
@@ -252,6 +260,7 @@ img {
 .icon-btn:hover {
     background: var(--accent-green);
     color: var(--primary-green);
+    transform: scale(1.05);
 }
 
 .notification-badge,
@@ -269,25 +278,25 @@ img {
     text-align: center;
 }
 
-/* Inserieren Button (Primary CTA - Kleinanzeigen style) */
+/* Inserieren Button (Primary CTA - Orange to Green) */
 .inserieren-btn-primary {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
     padding: 10px 20px;
     border-radius: var(--radius-md);
-    background: linear-gradient(135deg, #6BA83E, #8BC34A);
+    background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-hover));
     color: var(--text-white);
     font-weight: 600;
     font-size: 15px;
-    box-shadow: 0 2px 8px rgba(107, 168, 62, 0.3);
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
     transition: all var(--transition-base);
 }
 
 .inserieren-btn-primary:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(107, 168, 62, 0.4);
-    background: linear-gradient(135deg, #4A7C2C, #6BA83E);
+    background: linear-gradient(135deg, var(--primary-green-light), var(--secondary-green));
 }
 
 .inserieren-btn-primary svg {
@@ -306,22 +315,22 @@ img {
 
 .anmelden-btn {
     color: var(--text-primary);
-    border: 1.5px solid var(--border-color);
+    border: 1.5px solid var(--primary-orange);
 }
 
 .anmelden-btn:hover {
     border-color: var(--primary-green);
-    color: var(--primary-green);
-    background: var(--accent-green);
+    color: var(--text-white);
+    background: var(--primary-green);
 }
 
 .registrieren-btn {
-    background: var(--primary-green);
+    background: var(--primary-orange);
     color: var(--text-white);
 }
 
 .registrieren-btn:hover {
-    background: var(--primary-green-hover);
+    background: var(--primary-green);
 }
 
 /* Search Bar */
