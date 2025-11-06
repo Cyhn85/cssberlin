@@ -1,0 +1,18 @@
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
+~*
+
+# Logs
+*.log
+
+# Windows reserved names
+nul
+NUL
