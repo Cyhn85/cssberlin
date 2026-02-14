@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Main Category (Damen, Herren, Kinder, Sonstiges)
+model Category {
+  id            Int             @id @default(autoincrement())
+  slug          String          @unique // "damen", "herren", "kinder", "sonstiges"
+  name          String          // "Damen", "Herren", "Kinder", "Sonstiges"
+  description   String?
+  imageUrl      String?
+  displayOrder  Int             @default(0)
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  subcategories Subcategory[]
+  products      Product[]
+}
+
+// Subcategory (Oberteile, Hosen & Jeans, etc.)
+model Subcategory {
+  id           Int       @id @default(autoincrement())
+  slug         String    // "oberteile", "hosen-jeans"
+  name         String    // "Oberteile", "Hosen & Jeans"
+  description  String?
+  imageUrl     String?
+  displayOrder Int       @default(0)
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  categoryId   Int
+  category     Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  products     Product[]
+
+  @@unique([categoryId, slug])
+}
+
+// Product Model
+model Product {
+  id            Int          @id @default(autoincrement())
+  brand         String
+  name          String
+  slug          String       @unique
+  description   String?
+  size          String
+  condition     String       // "Neu", "Neuwertig", "Sehr gut", "Gut"
+  price         Float
+  newPrice      Float
+  carbonSaved   Float        // kg CO2
+  tier          String       // "champion", "profi", "fortgeschritten", "einsteiger"
+  images        String       // JSON array of image URLs
+  sale          Boolean      @default(false)
+  featured      Boolean      @default(false)
+  isActive      Boolean      @default(true)
+
+  // Category relationships
+  categoryId    Int?
+  category      Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  subcategoryId Int?
+  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id], onDelete: SetNull)
+
+  // Additional metadata
+  material      String?
+  color         String?
+  gender        String?      // "female", "male", "kids", "unisex"
+
+  // SEO & Analytics
+  views         Int          @default(0)
+  wishlistCount Int          @default(0)
+
+  // Timestamps
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
