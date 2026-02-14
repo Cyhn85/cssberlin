@@ -1,0 +1,225 @@
+/* Top Banner with Animation */
+.top-banner {
+  background: linear-gradient(135deg, #2D6A4F 0%, #1B4332 100%);
+  color: white;
+  padding: 0.8rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  height: 45px;
+}
+
+.banner-slider {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-item {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.banner-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.banner-icon {
+  font-size: 1.2rem;
+}
+
+/* Main Header */
+.header-main {
+  background: white;
+  border-bottom: 1px solid #E0E0E0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Logo */
+.logo {
+  text-decoration: none;
+  color: #1B4332;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Category Section */
+.category-section {
+  position: relative;
+}
+
+.category-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  background: #2D6A4F;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.category-filter-btn:hover {
+  background: #1B4332;
+  transform: translateY(-2px);
+}
+
+.category-filter-btn svg {
+  stroke-width: 2;
+}
+
+/* Mega Menu */
+.mega-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: white;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 2rem;
+  z-index: 1000;
+  min-width: 800px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mega-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.mega-menu-column {
+  border-right: 1px solid #F0F0F0;
+  padding-right: 1.5rem;
+}
+
+.mega-menu-column:last-child {
+  border-right: none;
+}
+
+.mega-menu-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1B4332;
+}
+
+.mega-menu-title a {
+  color: #2D6A4F;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mega-menu-title a:hover {
+  color: #1B4332;
+  text-decoration: underline;
+}
+
+.mega-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mega-menu-list li {
+  margin-bottom: 0.6rem;
+}
+
+.mega-menu-list a {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  display: inline-block;
+}
+
+.mega-menu-list a:hover {
+  color: #2D6A4F;
+  padding-left: 0.3rem;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+.nav a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  color: #2D6A4F;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .mega-menu {
+    min-width: 90vw;
+  }
+
+  .mega-menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .banner-item {
+    font-size: 0.85rem;
+  }
+}
