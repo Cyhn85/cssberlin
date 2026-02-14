@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "cf:build": "npx @opennextjs/cloudflare",
+    "cf:dev": "wrangler pages dev .worker-next --compatibility-flag=nodejs_compat",
+    "cf:deploy": "wrangler pages deploy .worker-next --project-name=cssberlin",
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio"
@@ -21,9 +24,11 @@
     "@types/node": "^22.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@opennextjs/cloudflare": "^1.1.1",
     "prisma": "^5.18.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "wrangler": "^3.80.0"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
