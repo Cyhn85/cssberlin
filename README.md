@@ -1,397 +1,423 @@
-# CSS Berlin - Interactive Preview Mockup
+# 🌿 CSS Berlin - Sustainable Second-Hand Fashion E-commerce
 
-## 🎨 Übersicht
+![CSS Berlin](https://img.shields.io/badge/Platform-Cloudflare%20Pages-orange)
+![Database](https://img.shields.io/badge/Database-Neon%20PostgreSQL-blue)
+![Framework](https://img.shields.io/badge/Framework-Next.js%2014-black)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-green)
 
-Dies ist eine **interaktive HTML/CSS/JavaScript Vorschau** der CSS Berlin Website, erstellt **ohne Backend-Code** für schnelles visuelles Feedback.
-
-**Status:** ✅ Bereit zur Überprüfung
-**Erstellt:** 2025-11-03
-**Version:** 1.0 Preview
-
----
-
-## 📁 Dateien
-
-```
-preview/
-├── index.html              # Homepage mit Banner + 4 Produkten
-├── product-detail.html     # Produktdetailseite
-├── styles.css              # Haupt-Stylesheet
-├── product-detail.css      # Produktdetail-Styles
-├── script.js               # Homepage-Interaktionen
-├── product-detail.js       # Produktdetail-Interaktionen
-└── README.md              # Diese Datei
-```
+**Motto:** *"Zweite Hand Waren, Erste Wahl für die Welt!"*
 
 ---
 
-## 🚀 Wie du die Preview öffnest
+## 📋 Overview
 
-### Methode 1: Direkt im Browser
-1. Öffne `index.html` mit Doppelklick
-2. Oder: Rechtsklick → "Öffnen mit" → Dein Browser (Chrome, Firefox, Edge)
+CSS Berlin is a **sustainable second-hand fashion marketplace** built with modern web technologies. The platform automatically imports products from Vinted, generates short-form social media videos using AI, and provides an SEO-optimized shopping experience.
 
-### Methode 2: Live Server (empfohlen)
-1. In VSCode: Rechtsklick auf `index.html`
-2. Wähle "Open with Live Server"
-3. Browser öffnet automatisch
+### 🎯 Key Features
 
----
-
-## 🎯 Was ist implementiert?
-
-### ✅ Homepage (index.html)
-
-#### Header
-- Logo "CSS Berlin"
-- Navigation: Kategorien, Sale, Neu, CO₂ Rangliste
-- Icons: Benachrichtigungen (mit Badge: 3), Wunschliste, Warenkorb
-- User Button: "Anmelden"
-- Suchleiste mit Placeholder
-
-#### Banner (Hero Section)
-- **Mars→Earth Transformation:**
-  - Hover: Mars (rot/tot) → Earth (grün/lebendig)
-  - Auto: Wechselt alle 3 Sekunden automatisch
-- Slogan: "Zweite Hand Waren, Erste Wahl für die Welt!"
-- Live-Statistiken: 248.5t CO₂, 12,847 Artikel, 8,234 Bäume
-- CTA Button: "Jetzt entdecken"
-
-#### Produkt-Grid
-- **4 Produkte** in einer Reihe (5 bei >1600px Bildschirmbreite)
-- Jede Produktkarte zeigt:
-  - Produktbild (Unsplash Placeholder)
-  - Wishlist Button (Herz-Icon)
-  - Carbon Badge mit CO₂-Einsparung
-  - 5 Tier-System: Champion (Gold), Profi (Blau), Fortgeschritten (Lila), Einsteiger (Türkis)
-  - BOGO Badge (bei Produkt 2)
-  - Marke, Titel, Größe, Zustand
-  - Preis + Neupreis-Vergleich (klickbarer Link)
-  - "In den Warenkorb" Button
-
-#### Interaktionen
-- **Banner Hover:** Mars↔Earth Wechsel
-- **Banner Auto:** 3-Sekunden Animation
-- **Wishlist:** Klick fügt hinzu/entfernt (mit Notification)
-- **Add to Cart:** Button-Feedback + Notification
-- **Product Card:** Hover-Effekt (hebt sich)
-- **Notification Icon:** Zeigt Panel mit 3 Beispiel-Nachrichten
+- ✅ **89 Products** (auto-synced from Vinted)
+- ✅ **4 Categories** + **18 Subcategories**
+- ✅ **CO₂ Tracking** (~498kg saved!)
+- ✅ **AI Video Generation** (Gemini Pro)
+- ✅ **SEO Optimized** (Sitemap, Robots.txt, Schema.org)
+- ✅ **Serverless Deployment** (Cloudflare Pages)
+- ✅ **Free Tier** (€0/month for 5000 visitors)
 
 ---
 
-### ✅ Produktdetailseite (product-detail.html)
+## 🚀 Quick Start
 
-#### Layout: Links Galerie, Rechts Details
+### Prerequisites
 
-#### Linke Seite: Bild-Galerie
-- Große Hauptansicht (4:5 Ratio)
-- 4 Thumbnails unten (klickbar)
-- Wishlist Button (groß)
-- Carbon Badge (groß)
-- Bild-Wechsel-Animation
+- Node.js 18+
+- Neon PostgreSQL account ([neon.tech](https://neon.tech))
+- Cloudflare account ([cloudflare.com](https://cloudflare.com))
+- Gemini Pro API key (optional, for videos)
 
-#### Rechte Seite: Produkt-Details
-1. **Header:**
-   - Marke (ZARA)
-   - Titel
-   - Bewertungen (5 Sterne, 47 Bewertungen)
+### Installation
 
-2. **Preis-Sektion:**
-   - Aktueller Preis: 45.00€
-   - Original: 89.95€ (durchgestrichen)
-   - Rabatt Badge: -50%
-   - Neupreis-Vergleich: Links zu Zara.com, Zalando
+```bash
+# Clone repository
+git clone https://github.com/Cyhn85/cssberlin.git
+cd cssberlin
 
-3. **Carbon Impact:**
-   - 18.5 kg CO₂ gespart
-   - 2.3 Bäume gepflanzt
-   - Datengenauigkeit: 85% (Fortschrittsbalken)
+# Install dependencies
+npm install
 
-4. **Produkt-Spezifikationen:**
-   - Größenauswahl: S, M (aktiv), L, XL (disabled)
-   - Zustand: Sehr gut (grüner Badge)
-   - Material: 65% Polyester, 35% Baumwolle
-   - Farbe: Beige
-   - Verkäufer: Anna M. (Champion Badge)
+# Setup environment
+cp .env.example .env
+# Edit .env with your DATABASE_URL
 
-5. **Action Buttons:**
-   - "In den Warenkorb" (grün, Hauptaktion)
-   - "Preis verhandeln" (weiß mit grünem Rand)
+# Generate Prisma client
+npx prisma generate
 
-6. **Verhandlungs-Info:**
-   - Bis zu 15% Rabatt möglich
-   - 5 kostenlose Verhandlungen/Tag
+# Push schema to database
+npx prisma db push
 
-7. **Versand & Käuferschutz:**
-   - Versandkosten: ca. 4.99€ (Käufer zahlt)
-   - 14 Tage Rückgaberecht
-
-8. **Produktbeschreibung:**
-   - Text + Bullet Points
-
-#### Verhandlungs-Modal
-- **Öffnet beim Klick auf "Preis verhandeln"**
-- Zeigt:
-  - Aktueller Preis: 45.00€
-  - Max. Rabatt: 15%
-  - Min. Preis: 38.25€
-- Input + Slider für Angebot
-- Verhandlungen-Counter: 4/5 verbleibend
-- "Angebot senden" Button
-
-#### Outfit-Vorschläge
-- 3 KI-generierte Kombinationen
-- Match-Prozentsatz (95%, 92%, 88%)
-- "Komplettes Outfit ansehen" Button
-- Gesamt-CO₂-Einsparung: -42.3kg
-
-#### Ähnliche Produkte
-- Produkt-Grid (wie Homepage)
-
----
-
-## 🎨 Design-Features
-
-### Farbschema
-```css
---primary-green: #2D5016      /* Haupt-Grün */
---secondary-green: #4A7C2C    /* Hover-Grün */
---accent-green: #6BA83E       /* Akzent-Grün */
---light-green: #E8F5E9        /* Hintergrund-Grün */
-
-/* Carbon Badges */
---champion-gold: #FFD700      /* Gold */
---profi-blue: #4169E1         /* Blau */
---fortgeschritten-purple: #9370DB /* Lila */
---einsteiger-teal: #20B2AA    /* Türkis */
-
-/* Sale */
---sale-red: #D32F2F           /* Rot */
+# Seed initial data (categories + subcategories)
+npm run db:seed
 ```
 
-### Typografie
-- Font: System-Font-Stack (Arial, Helvetica, Segoe UI)
-- Banner-Titel: 56px, 800 weight
-- Produkt-Titel: 16px, 600 weight
-- Produktdetail-Titel: 32px, 700 weight
+### Development
 
-### Spacing
-- xs: 4px, sm: 8px, md: 16px, lg: 24px, xl: 32px, 2xl: 48px
+```bash
+# Start Next.js dev server
+npm run dev
+# → http://localhost:3000
 
-### Border Radius
-- sm: 4px, md: 8px, lg: 12px, xl: 16px
+# Open Prisma Studio (database GUI)
+npm run db:studio
+# → http://localhost:5555
+```
 
----
+### Cloudflare Deployment
 
-## 📱 Responsive Design
+```bash
+# Build for Cloudflare
+npm run cf:build
 
-### Desktop (Standard)
-- Max-Width: 1400px
-- Produkt-Grid: 4 Spalten
-- Banner: Full Height (500px)
+# Local preview
+npm run cf:dev
+# → http://localhost:8788
 
-### Large Desktop (>1600px)
-- Produkt-Grid: 5 Spalten
-
-### Tablet (768px - 1024px)
-- Produkt-Grid: 3 Spalten
-- Banner: 500px
-- Navigation versteckt (später: Burger Menu)
-
-### Mobile (<768px)
-- Produkt-Grid: 2 Spalten
-- Banner: 400px
-- Stats: Vertikal
-- Produktdetail: 1 Spalte (Galerie über Details)
-
-### Small Mobile (<480px)
-- Produkt-Grid: 1 Spalte
-- Banner: 350px
-- Kompaktere Buttons
+# Deploy to Cloudflare Pages
+npm run cf:deploy
+```
 
 ---
 
-## ⚡ Interaktionen & Animationen
+## 📦 Vinted Product Import
 
-### Banner
-- **Hover:** Mars→Earth sofort
-- **Auto:** Alle 3 Sekunden wechseln (startet nach 3 Sek)
-- **Transition:** 0.8s ease-in-out
+### Step 1: Scrape Products
 
-### Produkt-Karten
-- **Hover:** translateY(-4px) + Shadow
-- **Image Hover:** scale(1.05)
-- **Wishlist Hover:** scale(1.1) + Grüner Hintergrund
+```bash
+node scripts/vinted-scraper.js
+```
 
-### Buttons
-- **Primary Hover:** Dunkleres Grün + translateY(-2px)
-- **Add to Cart:** Zeigt "✓ Hinzugefügt" für 2 Sekunden
+**Fetches:**
+- All products from Vinted user (293217988)
+- Product images, titles, descriptions
+- Prices, brands, conditions
+- Auto-categorizes to CSS Berlin categories
 
-### Notifications
-- **Position:** Top-Right (80px von oben)
-- **Animation:** slideInRight → slideOutRight
-- **Duration:** 3 Sekunden
-- **Types:** Success (grün), Info (dunkelgrün), Error (rot)
+**Output:** `scripts/vinted-products.json`
 
-### Modals
-- **Overlay:** fadeIn/fadeOut
-- **Content:** slideUp/slideDown
-- **Close:** Klick außerhalb oder X-Button
+### Step 2: Import to Database
 
----
+```bash
+node scripts/import-to-database.js
+```
 
-## 🔧 Technische Details
+**Creates:**
+- Categories (Damen, Herren, Kinder, Sonstiges)
+- Subcategories (Oberteile, Hosen & Jeans, etc.)
+- Products with images and metadata
 
-### Keine Dependencies
-- Pure HTML5, CSS3, Vanilla JavaScript
-- Keine Frameworks (React, Vue, etc.)
-- Keine Libraries (jQuery, Bootstrap, etc.)
-- Funktioniert offline
-
-### Browser-Kompatibilität
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-
-### Performance
-- Keine API-Calls (statisch)
-- Bilder: Unsplash Placeholders (später ersetzt)
-- CSS: ~40KB
-- JavaScript: ~8KB
-- Load Time: <1 Sekunde
+**Result:** 89 products live on cssberlin.de! ✅
 
 ---
 
-## 🎯 Was NICHT implementiert ist
+## 🎬 AI Video Generation
 
-Diese Preview ist **nur visuell**. Folgendes fehlt absichtlich:
+### Setup
 
-### Backend-Funktionen
-- ❌ Datenbank-Anbindung
-- ❌ User Authentication
-- ❌ Echte Produkt-Daten
-- ❌ Warenkorb-Logik
-- ❌ Checkout-Prozess
-- ❌ Zahlungs-Integration
+1. Get Gemini Pro API key: https://makersuite.google.com/app/apikey
+2. Add to `.env`: `GEMINI_API_KEY=your_key_here`
 
-### Advanced Features
-- ❌ Profit-Calculation-Terminal
-- ❌ CO₂-Tracking-System
-- ❌ Negotiation-Backend
-- ❌ Clothing-Set-AI-Algorithm
-- ❌ Real-Time-Benachrichtigungen
+### Generate Videos
 
-### Content
-- ❌ Echte Produktbilder
-- ❌ Vollständige Produktbeschreibungen
-- ❌ Footer
-- ❌ Impressum/Datenschutz
-- ❌ Mobile Burger-Menu
+```bash
+node scripts/video-generator.js
+```
+
+**Creates:**
+- 10-second short video scripts
+- Hooks, body content, CTAs
+- German captions & hashtags
+- TikTok/Instagram/YouTube ready
+
+**Output:** `videos/*.json` (video configs)
+
+**Free Tier:** 50-100 videos/day
 
 ---
 
-## 📋 Nächste Schritte
+## 🔧 Tech Stack
 
-### Phase 1: Feedback & Iteration
-1. ✅ **Du prüfst die Preview**
-2. ✅ **Du teilst Architektur-Bilder** aus deinen genutzten Systemen
-3. ✅ **Wir iterieren das Design** basierend auf deinem Feedback
+### Frontend
+- **Framework:** Next.js 14 (App Router)
+- **Styling:** CSS Modules + Vanilla CSS
+- **Language:** TypeScript
 
-### Phase 2: WordPress Removal
-1. ✅ **Folge der Anleitung:** `WORDPRESS_REMOVAL_GUIDE.md`
-2. ✅ **Screenshots teilen** bei jedem Schritt
-3. ✅ **IONOS Hosting vorbereiten**
+### Backend
+- **API:** Next.js API Routes
+- **ORM:** Prisma
+- **Database:** PostgreSQL (Neon)
 
-### Phase 3: Backend Development
-1. Django/Flask Setup
-2. PostgreSQL Datenbank
-3. JWT Authentication
-4. Profit-Calculation-Terminal (extern, mit Approval)
-5. API Endpoints
+### Deployment
+- **Hosting:** Cloudflare Pages (Free)
+- **Adapter:** @opennextjs/cloudflare
+- **CDN:** Cloudflare Global Network
 
-### Phase 4: Frontend-Backend Integration
-1. React oder Vue.js Frontend
-2. API-Anbindung
-3. State Management
-4. Real Product Data
-
-### Phase 5: Deployment
-1. Frontend Build
-2. Backend Deployment (IONOS + Cloudflare)
-3. DNS-Konfiguration
-4. SSL-Aktivierung
-
-### Phase 6: Testing
-1. Close Circle Testing
-2. Bug Fixes
-3. Performance-Optimierung
-4. Launch! 🚀
+### AI & Automation
+- **Video Scripts:** Gemini Pro API
+- **Product Scraping:** Vinted API (unofficial)
+- **Social Media:** Manual upload (automation planned)
 
 ---
 
-## 🐛 Bekannte Einschränkungen
+## 📊 Project Structure
 
-1. **Bilder:** Unsplash Placeholders (müssen ersetzt werden)
-2. **Navigation:** Keine echten Links (nur #)
-3. **Mobile Menu:** Noch kein Burger-Menu
-4. **Footer:** Fehlt komplett
-5. **Responsive:** Optimiert, aber nicht pixel-perfekt
-6. **Browser:** Nicht getestet in IE11 (kein Support nötig)
-
----
-
-## 💡 Tipps zur Überprüfung
-
-### Was du testen solltest:
-
-1. **Banner-Transformation:**
-   - Hover über Banner → Wechselt zu grün?
-   - Warte 3 Sekunden → Auto-Wechsel?
-
-2. **Produkt-Interaktionen:**
-   - Klick auf Herz → Notification?
-   - Klick auf "In den Warenkorb" → Feedback?
-   - Hover über Produkt → Hebt sich?
-
-3. **Produktdetailseite:**
-   - Klick auf Thumbnail → Bild wechselt?
-   - Klick auf "Preis verhandeln" → Modal öffnet?
-   - Slider im Modal → Preis ändert sich?
-
-4. **Responsive:**
-   - Fenster kleiner machen → Layout passt sich an?
-   - Mobile-Größe → 2 Spalten, dann 1 Spalte?
-
-5. **Notifications:**
-   - Klick auf Bell-Icon → Panel öffnet?
-   - Klick außerhalb → Panel schließt?
+```
+cssberlin/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Homepage
+│   ├── categories/        # Category pages (dynamic)
+│   ├── api/               # API endpoints
+│   ├── robots.txt/        # SEO: robots.txt
+│   └── sitemap.xml/       # SEO: dynamic sitemap
+├── components/            # React components
+│   ├── Header.tsx         # Navigation + mega menu
+│   └── Footer.tsx         # Footer (TODO)
+├── prisma/                # Database schema + seed
+│   ├── schema.prisma      # PostgreSQL models
+│   └── seed.ts            # Initial data
+├── scripts/               # Automation scripts
+│   ├── vinted-scraper.js  # Fetch Vinted products
+│   ├── import-to-database.js # Import to PostgreSQL
+│   └── video-generator.js # Generate AI videos
+├── videos/                # Generated video configs
+├── public/                # Static assets
+├── lib/                   # Utilities (Prisma client)
+├── wrangler.toml          # Cloudflare config
+├── next.config.js         # Next.js + OpenNext
+├── DEPLOYMENT_GUIDE.md    # Full deployment guide
+├── CLEANUP_GUIDE.md       # Cloudflare cleanup guide
+└── README.md              # This file
+```
 
 ---
 
-## 📞 Feedback
+## 🌍 Deployment
 
-Nach der Überprüfung, teile bitte:
+### Cloudflare Pages
 
-1. **Was gefällt dir?** ✅
-2. **Was soll geändert werden?** 🔄
-3. **Was fehlt?** ❓
-4. **Architektur-Bilder** deiner genutzten Systeme 🖼️
+**Live URL:** https://cssberlin1.pages.dev
+**Custom Domain:** www.cssberlin.de (configurable)
+
+**Environment Variables:**
+- `DATABASE_URL` = Neon PostgreSQL connection string
+- `NEXT_PUBLIC_BASE_URL` = https://cssberlin.de
+- `GEMINI_API_KEY` = Gemini Pro API key (optional)
+
+**Build Settings:**
+```
+Build command:       npm run cf:build
+Output directory:    .worker-next
+Node version:        18
+```
+
+**Auto-deploy:** Every `git push` triggers new deployment ✅
 
 ---
 
-## 🎨 Design-Philosophie
+## 📈 SEO & Analytics
 
-### "Zweite Hand Waren, Erste Wahl für die Welt!"
+### SEO Features (Built-in)
 
-- **Grün = Nachhaltigkeit** (nicht zu hell, nicht zu dunkel)
-- **Mars→Earth** = Transformation (negative→positive Botschaft)
-- **Carbon Badges** = Gamification (Fortschritt sichtbar machen)
-- **Clean & Modern** = Second-Hand ≠ Billig
-- **Performance** = Fast = Gut für CO₂
+- ✅ Dynamic sitemap: `/sitemap.xml`
+- ✅ Robots.txt: `/robots.txt`
+- ✅ Meta tags (per page)
+- ✅ Schema.org structured data
+- ✅ Canonical URLs
+- ✅ Open Graph tags
+
+### Google Search Console
+
+1. Add property: `cssberlin.de`
+2. Submit sitemap: `https://cssberlin.de/sitemap.xml`
+3. Monitor indexing
+
+### Google AdSense (Planned)
+
+**Requirements:**
+- ✅ 30+ pages (100+ with products + categories)
+- ✅ Original content
+- ⏳ Privacy Policy page (TODO)
+- ⏳ Contact page (TODO)
+- ⏳ About Us page (TODO)
+
+**Expected Revenue:** €5-15/month (5000 visitors)
 
 ---
 
-**Bereit für dein Feedback!** 🚀
+## 🔒 Security
 
-Wenn die Preview genehmigt ist, geht's weiter mit WordPress-Removal und Backend-Development!
+### Built-in Protection
+
+- ✅ Prisma ORM (SQL injection prevention)
+- ✅ CORS policy (API access control)
+- ✅ Cloudflare DDoS protection
+- ✅ SSL/TLS encryption (auto)
+- ✅ Environment variable secrets
+
+### Bot Whitelist (Admin)
+
+For your automation scripts:
+
+```javascript
+const headers = {
+  'X-API-Key': process.env.ADMIN_API_KEY,
+};
+```
+
+Generate API key:
+```bash
+openssl rand -hex 32
+```
+
+---
+
+## 💰 Cost Breakdown (€0/month!)
+
+| Service | Free Tier | Current Usage | Status |
+|---------|-----------|---------------|--------|
+| **Cloudflare Pages** | 100k req/day | ~1k/day | ✅ Safe |
+| **Neon PostgreSQL** | 0.5GB storage | 0.03GB | ✅ Safe |
+| **Neon Compute** | 100h/month | 8.18h | ✅ Safe |
+| **Gemini Pro** | 50 req/day | 5-10/day | ✅ Safe |
+| **GitHub Actions** | 2000 min/month | 0 min | ✅ Safe |
+
+**Total:** €0/month for 5000 visitors 🎉
+
+---
+
+## 📝 Scripts Reference
+
+### Database
+```bash
+npm run db:push     # Push Prisma schema to database
+npm run db:seed     # Seed initial data
+npm run db:studio   # Open Prisma Studio GUI
+```
+
+### Development
+```bash
+npm run dev         # Next.js dev server
+npm run build       # Production build
+npm run start       # Start production server
+npm run lint        # ESLint
+```
+
+### Cloudflare
+```bash
+npm run cf:build    # Build for Cloudflare
+npm run cf:dev      # Local Cloudflare preview
+npm run cf:deploy   # Deploy to Cloudflare Pages
+```
+
+### Automation
+```bash
+node scripts/vinted-scraper.js        # Fetch Vinted products
+node scripts/import-to-database.js    # Import to PostgreSQL
+node scripts/video-generator.js       # Generate AI videos
+```
+
+---
+
+## 🆘 Troubleshooting
+
+### Build Failed
+
+```bash
+# Test locally
+npm run cf:build
+
+# Check dependencies
+npm install --legacy-peer-deps
+```
+
+### Database Connection Failed
+
+```bash
+# Verify connection
+npx prisma studio
+
+# Check DATABASE_URL in .env
+echo $DATABASE_URL
+```
+
+### Gemini API Quota Exceeded
+
+- Wait 24 hours for reset
+- Or upgrade to paid plan (€0.05/request)
+
+---
+
+## 📚 Documentation
+
+- **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)** - Complete deployment guide
+- **[CLEANUP_GUIDE.md](./CLEANUP_GUIDE.md)** - GitHub/Cloudflare cleanup
+- **[Cloudflare Docs](https://developers.cloudflare.com/pages/)**
+- **[Neon Docs](https://neon.tech/docs/introduction)**
+- **[Prisma Docs](https://www.prisma.io/docs/)**
+
+---
+
+## 🎯 Roadmap
+
+### ✅ Phase 1: MVP (Completed)
+- [x] Next.js setup
+- [x] Cloudflare deployment
+- [x] Vinted scraper
+- [x] Database integration
+- [x] AI video generator
+- [x] SEO optimization
+
+### ⏳ Phase 2: Content (In Progress)
+- [x] 89 products imported
+- [ ] 100+ videos generated
+- [ ] Social media automation
+- [ ] Google AdSense approved
+
+### 🔮 Phase 3: Growth
+- [ ] Admin panel (NextAuth)
+- [ ] User authentication
+- [ ] Shopping cart
+- [ ] Checkout process
+- [ ] Payment integration (Stripe)
+
+### 🚀 Phase 4: Scale
+- [ ] 1000+ products
+- [ ] Multi-language (EN/DE)
+- [ ] Mobile app (React Native)
+- [ ] Advanced analytics
+
+---
+
+## 🤝 Contributing
+
+This is a private project. For suggestions:
+1. Create an issue
+2. Fork the repository
+3. Submit pull request
+
+---
+
+## 📄 License
+
+Proprietary - CSS Berlin © 2026
+
+---
+
+## 📞 Contact
+
+**Project:** CSS Berlin
+**Website:** https://cssberlin.de
+**GitHub:** [@Cyhn85](https://github.com/Cyhn85)
+
+---
+
+**Built with ❤️ for a sustainable future. Every purchase saves CO₂! 🌍**
+
+*Last updated: 2026-02-27*

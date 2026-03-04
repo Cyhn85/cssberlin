@@ -56,9 +56,9 @@ model Product {
   size          String
   condition     String       // "Neu", "Neuwertig", "Sehr gut", "Gut"
   price         Float
-  newPrice      Float
+  newPrice      Float        @default(0)
   carbonSaved   Float        // kg CO2
-  tier          String       // "champion", "profi", "fortgeschritten", "einsteiger"
+  tier          String       // "champion", "profi", "fortgeschritten", "einsteiger", "premium", "designer", "vintage", "standard"
   images        String       // JSON array of image URLs
   sale          Boolean      @default(false)
   featured      Boolean      @default(false)
@@ -75,6 +75,10 @@ model Product {
   material      String?
   color         String?
   gender        String?      // "female", "male", "kids", "unisex"
+
+  // Vinted Integration
+  vintedId      String?      @unique  // Vinted product ID
+  vintedUrl     String?               // Direct link to Vinted listing
 
   // SEO & Analytics
   views         Int          @default(0)
