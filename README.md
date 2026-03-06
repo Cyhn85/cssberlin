@@ -421,3 +421,4 @@ Proprietary - CSS Berlin © 2026
 **Built with ❤️ for a sustainable future. Every purchase saves CO₂! 🌍**
 
 *Last updated: 2026-02-27*
+# Deploy via GitHub Actions
