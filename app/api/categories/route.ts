@@ -4,17 +4,12 @@ import { prisma } from '@/lib/prisma'
 export async function GET(request: NextRequest) {
   try {
     const categories = await prisma.category.findMany({
-      where: { isActive: true },
       include: {
-        subcategories: {
-          where: { isActive: true },
-          orderBy: { displayOrder: 'asc' }
-        },
+        children: true,
         _count: {
           select: { products: true }
         }
-      },
-      orderBy: { displayOrder: 'asc' }
+      }
     })
 
     return NextResponse.json({
