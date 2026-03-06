@@ -41,7 +41,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .open-next
+          command: pages deploy .worker-next
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
@@ -49,4 +49,4 @@ jobs:
         run: |
           echo "✅ Deployment completed!"
           echo "🌐 Site: https://cssberlin.pages.dev"
-          echo "📦 Build artifacts in .open-next/"
+          echo "📦 Build artifacts in .worker-next/"
