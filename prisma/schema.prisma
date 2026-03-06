@@ -27,14 +27,49 @@ model Category {
   @@map("Category")
 }
 
+// Color Table
+model Color {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  hexCode  String?   // Optional hex color code
+  products Product[]
+
+  @@map("Color")
+}
+
+// Size Table
+model Size {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+
+  @@map("Size")
+}
+
+// Brand Table
+model Brand {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+
+  @@map("Brand")
+}
+
+// Material Table
+model Material {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+
+  @@map("Material")
+}
+
 // Product Model
 model Product {
   id            String       @id @default(uuid())
-  brand         String
   name          String
   slug          String       @unique
   description   String?
-  size          String
   condition     String       // "Neu", "Neuwertig", "Sehr gut", "Gut"
   price         Float
   newPrice      Float        @default(0)
@@ -49,9 +84,23 @@ model Product {
   categoryId    String?
   category      Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 
+  // Brand relationship
+  brandId       String?
+  brand         Brand?       @relation(fields: [brandId], references: [id], onDelete: SetNull)
+
+  // Size relationship
+  sizeId        String?
+  size          Size?        @relation(fields: [sizeId], references: [id], onDelete: SetNull)
+
+  // Color relationship
+  colorId       String?
+  color         Color?       @relation(fields: [colorId], references: [id], onDelete: SetNull)
+
+  // Material relationship
+  materialId    String?
+  material      Material?    @relation(fields: [materialId], references: [id], onDelete: SetNull)
+
   // Additional metadata
-  material      String?
-  color         String?
   gender        String?      // "female", "male", "kids", "unisex"
 
   // Vinted Integration
