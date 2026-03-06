@@ -23,29 +23,28 @@ export async function GET(
     const maxPrice = parseFloat(searchParams.get('maxPrice') || '999999')
     const condition = searchParams.get('condition')
 
-    // Find category and subcategory
-    const category = await prisma.category.findUnique({
+    // Find parent category
+    const parentCategory = await prisma.category.findUnique({
       where: { slug: catSlug },
       include: {
-        subcategories: {
+        children: {
           where: { slug: subSlug }
         }
       }
     })
 
-    if (!category || category.subcategories.length === 0) {
+    if (!parentCategory || parentCategory.children.length === 0) {
       return NextResponse.json(
         { success: false, error: 'Category or subcategory not found' },
         { status: 404 }
       )
     }
 
-    const subcategory = category.subcategories[0]
+    const subcategory = parentCategory.children[0]
 
     // Build where clause
     const where: any = {
-      subcategoryId: subcategory.id,
-      isActive: true,
+      categoryId: subcategory.id,
       price: { gte: minPrice, lte: maxPrice }
     }
 
@@ -62,7 +61,9 @@ export async function GET(
         orderBy: { [sortBy]: sortOrder },
         include: {
           category: { select: { name: true, slug: true } },
-          subcategory: { select: { name: true, slug: true } }
+          brand: { select: { name: true } },
+          color: { select: { name: true } },
+          size: { select: { name: true } }
         }
       }),
       prisma.product.count({ where })
@@ -78,8 +79,8 @@ export async function GET(
         totalPages: Math.ceil(total / limit)
       },
       category: {
-        name: category.name,
-        slug: category.slug
+        name: parentCategory.name,
+        slug: parentCategory.slug
       },
       subcategory: {
         name: subcategory.name,

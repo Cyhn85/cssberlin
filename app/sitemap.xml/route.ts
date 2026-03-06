@@ -12,17 +12,14 @@ export async function GET() {
 
     // Fetch all active categories
     const categories = await prisma.category.findMany({
-      where: { isActive: true },
       include: {
-        subcategories: {
-          where: { isActive: true },
+        children: {
         },
       },
     });
 
     // Fetch all active products (limit to first 1000 for sitemap size)
     const products = await prisma.product.findMany({
-      where: { isActive: true },
       select: {
         slug: true,
         updatedAt: true,
@@ -46,16 +43,16 @@ export async function GET() {
   ${categories.map(category => `
   <url>
     <loc>${baseUrl}/categories/${category.slug}</loc>
-    <lastmod>${category.updatedAt.toISOString()}</lastmod>
+    <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Subcategories -->
-  ${category.subcategories.map(sub => `
+  ${category.children.map(sub => `
   <url>
     <loc>${baseUrl}/categories/${category.slug}/${sub.slug}</loc>
-    <lastmod>${sub.updatedAt.toISOString()}</lastmod>
+    <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>`).join('')}
@@ -65,7 +62,7 @@ export async function GET() {
   ${products.map(product => `
   <url>
     <loc>${baseUrl}/products/${product.slug}</loc>
-    <lastmod>${product.updatedAt.toISOString()}</lastmod>
+    <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>`).join('')}

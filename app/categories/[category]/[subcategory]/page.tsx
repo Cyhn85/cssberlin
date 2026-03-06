@@ -24,17 +24,17 @@ export async function generateMetadata({ params }: PageProps) {
   const category = await prisma.category.findUnique({
     where: { slug: catSlug },
     include: {
-      subcategories: {
+      children: {
         where: { slug: subSlug }
       }
     }
   })
 
-  if (!category || category.subcategories.length === 0) {
+  if (!category || category.children.length === 0) {
     return {}
   }
 
-  const subcategory = category.subcategories[0]
+  const subcategory = category.children[0]
 
   return {
     title: `${subcategory.name} - ${category.name} | CSS Berlin`,
@@ -60,22 +60,21 @@ export default async function SubcategoryPage({ params, searchParams }: PageProp
   const category = await prisma.category.findUnique({
     where: { slug: catSlug },
     include: {
-      subcategories: {
+      children: {
         where: { slug: subSlug }
       }
     }
   })
 
-  if (!category || category.subcategories.length === 0) {
+  if (!category || category.children.length === 0) {
     notFound()
   }
 
-  const subcategory = category.subcategories[0]
+  const subcategory = category.children[0]
 
   // Build where clause
   const where: any = {
-    subcategoryId: subcategory.id,
-    isActive: true
+    categoryId: subcategory.id
   }
 
   if (searchParams.minPrice) {
@@ -94,7 +93,9 @@ export default async function SubcategoryPage({ params, searchParams }: PageProp
       orderBy: { [sortBy]: 'desc' },
       include: {
         category: true,
-        subcategory: true
+        brand: true,
+        size: true,
+        color: true
       }
     }),
     prisma.product.count({ where })
@@ -129,10 +130,10 @@ export default async function SubcategoryPage({ params, searchParams }: PageProp
               {product.sale && <span className="sale-badge">SALE</span>}
             </div>
             <div className="product-info">
-              <span className="brand">{product.brand}</span>
+              <span className="brand">{product.brand?.name || "N/A"}</span>
               <h3>{product.name}</h3>
               <div className="product-details">
-                <span className="size">Größe: {product.size}</span>
+                <span className="size">Größe: {product.size?.name || "N/A"}</span>
                 <span className="condition">{product.condition}</span>
               </div>
               <div className="price-row">

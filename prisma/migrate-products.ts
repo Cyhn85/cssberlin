@@ -10,7 +10,7 @@ const sampleProducts = [
     tier: 'champion',
     image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'damen', subcategorySlug: 'jacken-maentel', gender: 'female'
+    categorySlug: 'damen', subSlug: 'jacken-maentel', gender: 'female'
   },
   {
     id: 2, brand: 'H&M', name: 'Casual Jeans Hose', size: '32/32',
@@ -18,7 +18,7 @@ const sampleProducts = [
     tier: 'profi',
     image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400&h=500&fit=crop',
     sale: true,
-    categorySlug: 'herren', subcategorySlug: 'hosen-jeans', gender: 'male'
+    categorySlug: 'herren', subSlug: 'hosen-jeans', gender: 'male'
   },
   {
     id: 3, brand: 'Mango', name: 'Sommer Kleid mit Blumenmuster', size: 'S',
@@ -26,7 +26,7 @@ const sampleProducts = [
     tier: 'fortgeschritten',
     image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'damen', subcategorySlug: 'kleider-roecke', gender: 'female'
+    categorySlug: 'damen', subSlug: 'kleider-roecke', gender: 'female'
   },
   {
     id: 4, brand: 'Nike', name: 'Sport Sneakers Air Max', size: '42',
@@ -34,7 +34,7 @@ const sampleProducts = [
     tier: 'einsteiger',
     image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'schuhe', gender: 'unisex'
+    categorySlug: 'herren', subSlug: 'schuhe', gender: 'unisex'
   },
   {
     id: 5, brand: 'Adidas', name: 'Performance Trainingsjacke', size: 'L',
@@ -42,7 +42,7 @@ const sampleProducts = [
     tier: 'profi',
     image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'jacken-maentel', gender: 'male'
+    categorySlug: 'herren', subSlug: 'jacken-maentel', gender: 'male'
   },
   {
     id: 6, brand: 'Tommy Hilfiger', name: 'Classic Poloshirt', size: 'M',
@@ -50,7 +50,7 @@ const sampleProducts = [
     tier: 'fortgeschritten',
     image: 'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=400&h=500&fit=crop',
     sale: true,
-    categorySlug: 'herren', subcategorySlug: 't-shirts-tops', gender: 'male'
+    categorySlug: 'herren', subSlug: 't-shirts-tops', gender: 'male'
   },
   {
     id: 7, brand: 'Levi\'s', name: '501 Original Fit Jeans', size: '30/32',
@@ -58,7 +58,7 @@ const sampleProducts = [
     tier: 'champion',
     image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'hosen-jeans', gender: 'unisex'
+    categorySlug: 'herren', subSlug: 'hosen-jeans', gender: 'unisex'
   },
   {
     id: 8, brand: 'Puma', name: 'Running Laufschuhe', size: '41',
@@ -66,7 +66,7 @@ const sampleProducts = [
     tier: 'profi',
     image: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'schuhe', gender: 'unisex'
+    categorySlug: 'herren', subSlug: 'schuhe', gender: 'unisex'
   },
   {
     id: 9, brand: 'Calvin Klein', name: 'Slim Fit Hemd', size: 'L',
@@ -74,7 +74,7 @@ const sampleProducts = [
     tier: 'fortgeschritten',
     image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'hemden', gender: 'male'
+    categorySlug: 'herren', subSlug: 'hemden', gender: 'male'
   },
   {
     id: 10, brand: 'The North Face', name: 'Outdoor Winterjacke', size: 'M',
@@ -82,7 +82,7 @@ const sampleProducts = [
     tier: 'champion',
     image: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'jacken-maentel', gender: 'unisex'
+    categorySlug: 'herren', subSlug: 'jacken-maentel', gender: 'unisex'
   },
   {
     id: 11, brand: 'Vans', name: 'Old Skool Sneakers', size: '43',
@@ -90,7 +90,7 @@ const sampleProducts = [
     tier: 'profi',
     image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=400&h=500&fit=crop',
     sale: true,
-    categorySlug: 'herren', subcategorySlug: 'schuhe', gender: 'unisex'
+    categorySlug: 'herren', subSlug: 'schuhe', gender: 'unisex'
   },
   {
     id: 12, brand: 'Ralph Lauren', name: 'Polo Shirt Classic', size: 'L',
@@ -98,7 +98,7 @@ const sampleProducts = [
     tier: 'champion',
     image: 'https://images.unsplash.com/photo-1598032895371-d5b3ac2a2ead?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 't-shirts-tops', gender: 'male'
+    categorySlug: 'herren', subSlug: 't-shirts-tops', gender: 'male'
   },
   {
     id: 13, brand: 'Gap', name: 'Denim Jacke Vintage', size: 'M',
@@ -106,7 +106,7 @@ const sampleProducts = [
     tier: 'fortgeschritten',
     image: 'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'sonstiges', subcategorySlug: 'vintage', gender: 'unisex'
+    categorySlug: 'sonstiges', subSlug: 'vintage', gender: 'unisex'
   },
   {
     id: 14, brand: 'Converse', name: 'Chuck Taylor All Star', size: '42',
@@ -114,7 +114,7 @@ const sampleProducts = [
     tier: 'einsteiger',
     image: 'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'schuhe', gender: 'unisex'
+    categorySlug: 'herren', subSlug: 'schuhe', gender: 'unisex'
   },
   {
     id: 15, brand: 'Uniqlo', name: 'Lightweight Down Jacket', size: 'S',
@@ -122,7 +122,7 @@ const sampleProducts = [
     tier: 'profi',
     image: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'jacken-maentel', gender: 'unisex'
+    categorySlug: 'herren', subSlug: 'jacken-maentel', gender: 'unisex'
   },
   {
     id: 16, brand: 'Esprit', name: 'Casual Chino Hose', size: '32/34',
@@ -130,7 +130,7 @@ const sampleProducts = [
     tier: 'fortgeschritten',
     image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400&h=500&fit=crop',
     sale: false,
-    categorySlug: 'herren', subcategorySlug: 'hosen-jeans', gender: 'male'
+    categorySlug: 'herren', subSlug: 'hosen-jeans', gender: 'male'
   }
 ]
 
@@ -153,18 +153,18 @@ async function main() {
     const category = await prisma.category.findUnique({
       where: { slug: product.categorySlug },
       include: {
-        subcategories: {
-          where: { slug: product.subcategorySlug }
+        children: {
+          where: { slug: product.subSlug }
         }
       }
     })
 
-    if (!category || category.subcategories.length === 0) {
-      console.error(`❌ Category not found: ${product.categorySlug}/${product.subcategorySlug}`)
+    if (!category || category.children.length === 0) {
+      console.error(`❌ Category not found: ${product.categorySlug}/${product.subSlug}`)
       continue
     }
 
-    const subcategory = category.subcategories[0]
+    const subcategory = category.children[0]
 
     // Create product
     const createdProduct = await prisma.product.create({
@@ -181,7 +181,7 @@ async function main() {
         images: product.image, // Store as string (single image for now)
         sale: product.sale,
         categoryId: category.id,
-        subcategoryId: subcategory.id,
+        categoryId: subcategory.id,
         gender: product.gender,
         isActive: true
       }
