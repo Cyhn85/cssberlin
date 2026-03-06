@@ -10,45 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Main Category (Damen, Herren, Kinder, Sonstiges)
+// Category with self-referencing for subcategories
 model Category {
-  id            Int             @id @default(autoincrement())
-  slug          String          @unique // "damen", "herren", "kinder", "sonstiges"
-  name          String          // "Damen", "Herren", "Kinder", "Sonstiges"
-  description   String?
-  imageUrl      String?
-  displayOrder  Int             @default(0)
-  isActive      Boolean         @default(true)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  parentId  String?
 
-  subcategories Subcategory[]
-  products      Product[]
-}
+  // Self-referencing relationship
+  parent    Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children  Category[] @relation("CategoryHierarchy")
 
-// Subcategory (Oberteile, Hosen & Jeans, etc.)
-model Subcategory {
-  id           Int       @id @default(autoincrement())
-  slug         String    // "oberteile", "hosen-jeans"
-  name         String    // "Oberteile", "Hosen & Jeans"
-  description  String?
-  imageUrl     String?
-  displayOrder Int       @default(0)
-  isActive     Boolean   @default(true)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  // Products in this category
+  products  Product[]
 
-  categoryId   Int
-  category     Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-
-  products     Product[]
-
-  @@unique([categoryId, slug])
+  @@map("Category")
 }
 
 // Product Model
 model Product {
-  id            Int          @id @default(autoincrement())
+  id            String       @id @default(uuid())
   brand         String
   name          String
   slug          String       @unique
@@ -64,12 +45,9 @@ model Product {
   featured      Boolean      @default(false)
   isActive      Boolean      @default(true)
 
-  // Category relationships
-  categoryId    Int?
+  // Category relationship
+  categoryId    String?
   category      Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-
-  subcategoryId Int?
-  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id], onDelete: SetNull)
 
   // Additional metadata
   material      String?
@@ -87,4 +65,6 @@ model Product {
   // Timestamps
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
+
+  @@map("Product")
 }
