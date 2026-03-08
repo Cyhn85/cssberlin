@@ -37,8 +37,30 @@ jobs:
           NODE_OPTIONS: '--max-old-space-size=4096'
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-      - name: Deploy to Cloudflare
-        run: npx wrangler deploy
+      - name: Prepare deployment
+        run: |
+          # 1. Rename worker.js to _worker.js (Cloudflare Pages entry)
+          mv .open-next/worker.js .open-next/_worker.js
+          # 2. Copy static assets from assets/ to root level
+          cp -r .open-next/assets/* .open-next/
+          # 3. Create _routes.json - exclude static files from worker (serve from CDN)
+          cat > .open-next/_routes.json << 'ROUTES'
+          {
+            "version": 1,
+            "include": ["/*"],
+            "exclude": [
+              "/_next/static/*",
+              "/favicon.ico",
+              "/robots.txt",
+              "/sitemap.xml"
+            ]
+          }
+          ROUTES
+          echo "✅ Deployment prepared"
+          echo "Static files:" && ls .open-next/_next/static/ 2>/dev/null || echo "checking assets..." && ls .open-next/assets/_next/static/ 2>/dev/null
+
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy .open-next --project-name=cssberlin --branch=${{ github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
