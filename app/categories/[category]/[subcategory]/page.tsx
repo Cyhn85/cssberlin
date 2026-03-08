@@ -5,10 +5,10 @@ import Link from 'next/link'
 import '../../category.css'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     category: string
     subcategory: string
-  }
+  }>
   searchParams: {
     page?: string
     sortBy?: string
@@ -19,7 +19,8 @@ interface PageProps {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: PageProps) {
-  const { category: catSlug, subcategory: subSlug } = params
+  const resolvedParams = await params
+  const { category: catSlug, subcategory: subSlug } = resolvedParams
 
   const category = await prisma.category.findUnique({
     where: { slug: catSlug },
@@ -51,7 +52,8 @@ export async function generateMetadata({ params }: PageProps) {
 
 // Server Component - SSR for SEO
 export default async function SubcategoryPage({ params, searchParams }: PageProps) {
-  const { category: catSlug, subcategory: subSlug } = params
+  const resolvedParams = await params
+  const { category: catSlug, subcategory: subSlug } = resolvedParams
   const page = parseInt(searchParams.page || '1')
   const sortBy = searchParams.sortBy || 'createdAt'
   const limit = 20
