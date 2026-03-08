@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cf:build": "npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion",
+    "cf:build": "npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion && cp .open-next/worker.js .open-next/_worker.js",
     "cf:dev": "wrangler pages dev .worker-next --compatibility-flag=nodejs_compat",
     "cf:deploy": "wrangler pages deploy .open-next --project-name=cssberlin",
     "db:push": "prisma db push",
