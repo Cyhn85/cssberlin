@@ -37,19 +37,8 @@ jobs:
           NODE_OPTIONS: '--max-old-space-size=4096'
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-      - name: Prepare deployment
-        run: |
-          echo "📦 Preparing deployment directory..."
-          # Copy worker as _worker.js
-          cp .open-next/worker.js .open-next/_worker.js
-          # Create _routes.json to route ALL requests through the worker
-          # The worker internally handles static file serving from assets/
-          echo '{"version":1,"include":["/*"],"exclude":[]}' > .open-next/_routes.json
-          echo "✅ _worker.js and _routes.json ready"
-          ls -la .open-next/_worker.js .open-next/_routes.json
-
-      - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy .open-next --project-name=cssberlin --branch=${{ github.ref_name }}
+      - name: Deploy to Cloudflare
+        run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
