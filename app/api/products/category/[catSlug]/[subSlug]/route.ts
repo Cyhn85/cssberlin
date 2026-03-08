@@ -3,9 +3,10 @@ import { prisma } from '@/lib/prisma'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { catSlug: string; subSlug: string } }
+  props: { params: Promise<{ catSlug: string; subSlug: string }> }
 ) {
   try {
+    const params = await props.params
     const { catSlug, subSlug } = params
     const searchParams = request.nextUrl.searchParams
 
