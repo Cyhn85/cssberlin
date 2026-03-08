@@ -32,7 +32,7 @@ jobs:
         run: npx prisma generate
 
       - name: Build for Cloudflare
-        run: npm run cf:build
+        run: npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion && cp .open-next/worker.js .open-next/_worker.js
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
