@@ -1,0 +1,16 @@
+# Cloudflare Workers Configuration for CSS Berlin
+# Learn more: https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "cssberlin"
+compatibility_date = "2025-05-05"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".open-next"
+
+# Production environment
+[env.production]
+name = "cssberlin"
+
+# Environment variables should be set in Cloudflare Dashboard
+# Workers & Pages → cssberlin → Settings → Environment Variables
+# Required variables:
+#   - DATABASE_URL (secret): PostgreSQL connection string from Neon

@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Category with self-referencing for subcategories
+model Category {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  parentId  String?
+
+  // Self-referencing relationship
+  parent    Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children  Category[] @relation("CategoryHierarchy")
+
+  // Products in this category
+  products  Product[]
+
+  @@map("Category")
+}
+
+// Color Table
+model Color {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  hexCode  String?   // Optional hex color code
+  products Product[]
+
+  @@map("Color")
+}
+
+// Size Table
+model Size {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+
+  @@map("Size")
+}
+
+// Brand Table
+model Brand {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+
+  @@map("Brand")
+}
+
+// Material Table
+model Material {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+
+  @@map("Material")
+}
+
+// Product Model
+model Product {
+  id            String       @id @default(uuid())
+  name          String
+  slug          String       @unique
+  description   String?
+  condition     String       // "Neu", "Neuwertig", "Sehr gut", "Gut"
+  price         Float
+  newPrice      Float        @default(0)
+  carbonSaved   Float        // kg CO2
+  tier          String       // "champion", "profi", "fortgeschritten", "einsteiger", "premium", "designer", "vintage", "standard"
+  images        String       // JSON array of image URLs
+  sale          Boolean      @default(false)
+  featured      Boolean      @default(false)
+  isActive      Boolean      @default(true)
+
+  // Category relationship
+  categoryId    String?
+  category      Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  // Brand relationship
+  brandId       String?
+  brand         Brand?       @relation(fields: [brandId], references: [id], onDelete: SetNull)
+
+  // Size relationship
+  sizeId        String?
+  size          Size?        @relation(fields: [sizeId], references: [id], onDelete: SetNull)
+
+  // Color relationship
+  colorId       String?
+  color         Color?       @relation(fields: [colorId], references: [id], onDelete: SetNull)
+
+  // Material relationship
+  materialId    String?
+  material      Material?    @relation(fields: [materialId], references: [id], onDelete: SetNull)
+
+  // Additional metadata
+  gender        String?      // "female", "male", "kids", "unisex"
+
+  // Vinted Integration
+  vintedId      String?      @unique  // Vinted product ID
+  vintedUrl     String?               // Direct link to Vinted listing
+
+  // SEO & Analytics
+  views         Int          @default(0)
+  wishlistCount Int          @default(0)
+
+  // Timestamps
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("Product")
+}
