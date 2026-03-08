@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run cf:build",
     "start": "next start",
     "lint": "next lint",
     "cf:build": "npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion && cp .open-next/worker.js .open-next/_worker.js",
