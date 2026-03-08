@@ -32,39 +32,26 @@ jobs:
         run: npx prisma generate
 
       - name: Build for Cloudflare
-        run: npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion && cp .open-next/worker.js .open-next/_worker.js
+        run: npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-      - name: Create Cloudflare Pages Project (if not exists)
+      - name: Prepare deployment
         run: |
-          echo "Creating Cloudflare Pages project via API..."
-          RESPONSE=$(curl -s -X POST "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects" \
-            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-            -H "Content-Type: application/json" \
-            --data '{"name":"cssberlin","production_branch":"main","build_config":{"build_command":"","destination_dir":"","root_dir":""}}')
-          echo "$RESPONSE"
-          if echo "$RESPONSE" | grep -q '"success":true'; then
-            echo "✅ Project created successfully!"
-          elif echo "$RESPONSE" | grep -q '"code":"already_exists"'; then
-            echo "✅ Project already exists, continuing..."
-          else
-            echo "⚠️ Unexpected response, but continuing..."
-          fi
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          echo "📦 Preparing deployment directory..."
+          cp .open-next/worker.js .open-next/assets/_worker.js
+          echo "✅ _worker.js copied to assets/"
+          echo "📁 Assets structure:"
+          find .open-next/assets -maxdepth 3 -type f | head -20
 
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy .open-next --project-name=cssberlin --branch=${{ github.ref_name }}
+        run: npx wrangler pages deploy .open-next/assets --project-name=cssberlin --branch=${{ github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Deployment Summary
         run: |
           echo "✅ Deployment completed!"
-          echo "🌐 Site: https://cssberlin.pages.dev"
-          echo "📦 Build artifacts in .worker-next/"
+          echo "🌐 Site: https://cssberlin.de"
