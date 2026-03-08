@@ -9,12 +9,12 @@ interface PageProps {
     category: string
     subcategory: string
   }>
-  searchParams: {
+  searchParams: Promise<{
     page?: string
     sortBy?: string
     minPrice?: string
     maxPrice?: string
-  }
+  }>
 }
 
 // Generate metadata for SEO
@@ -54,8 +54,9 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function SubcategoryPage({ params, searchParams }: PageProps) {
   const resolvedParams = await params
   const { category: catSlug, subcategory: subSlug } = resolvedParams
-  const page = parseInt(searchParams.page || '1')
-  const sortBy = searchParams.sortBy || 'createdAt'
+  const resolvedSearchParams = await searchParams
+  const page = parseInt(resolvedSearchParams.page || '1')
+  const sortBy = resolvedSearchParams.sortBy || 'createdAt'
   const limit = 20
 
   // Fetch category and subcategory
@@ -79,11 +80,11 @@ export default async function SubcategoryPage({ params, searchParams }: PageProp
     categoryId: subcategory.id
   }
 
-  if (searchParams.minPrice) {
-    where.price = { ...where.price, gte: parseFloat(searchParams.minPrice) }
+  if (resolvedSearchParams.minPrice) {
+    where.price = { ...where.price, gte: parseFloat(resolvedSearchParams.minPrice) }
   }
-  if (searchParams.maxPrice) {
-    where.price = { ...where.price, lte: parseFloat(searchParams.maxPrice) }
+  if (resolvedSearchParams.maxPrice) {
+    where.price = { ...where.price, lte: parseFloat(resolvedSearchParams.maxPrice) }
   }
 
   // Fetch products
