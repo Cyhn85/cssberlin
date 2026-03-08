@@ -40,13 +40,16 @@ jobs:
       - name: Prepare deployment
         run: |
           echo "📦 Preparing deployment directory..."
-          cp .open-next/worker.js .open-next/assets/_worker.js
-          echo "✅ _worker.js copied to assets/"
-          echo "📁 Assets structure:"
-          find .open-next/assets -maxdepth 3 -type f | head -20
+          # 1. Copy worker as _worker.js (Cloudflare Pages entry point)
+          cp .open-next/worker.js .open-next/_worker.js
+          # 2. Copy static assets from assets/ to root so /_next/static/ paths work
+          cp -r .open-next/assets/* .open-next/
+          echo "✅ Static assets copied to root"
+          echo "📁 Checking _next/static at root level:"
+          ls .open-next/_next/static/ 2>/dev/null && echo "✅ Static files at root" || echo "❌ Missing"
 
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy .open-next/assets --project-name=cssberlin --branch=${{ github.ref_name }}
+        run: npx wrangler pages deploy .open-next --project-name=cssberlin --branch=${{ github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
